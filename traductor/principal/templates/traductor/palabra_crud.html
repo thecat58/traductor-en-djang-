@@ -1,0 +1,45 @@
+<!-- palabra_crud.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Palabras</title>
+</head>
+<body>
+    <h1>CRUD de Palabras</h1>
+    {% include 'traductor/navbar.html' %}
+    <!-- Formulario para crear una nueva palabra -->
+    <form method="post" action="{% url 'palabra-create' %}">
+        {% csrf_token %}
+        <label for="id_palabra">Palabra:</label>
+        <input type="text" id="id_palabra" name="palabra" required>
+        <br>
+        <label for="id_traduccion">Traducción:</label>
+        <input type="text" id="id_traduccion" name="traduccion" required>
+        <br>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <!-- Lista de palabras -->
+    <h2>Lista de Palabras</h2>
+    <ul>
+        {% for palabra in object_list %}
+            <li><a href="{% url 'palabra-detail' palabra.pk %}">{{ palabra }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <!-- Detalle de una palabra -->
+    {% if object %}
+        <h2>Detalle de Palabra</h2>
+        <p>Palabra: {{ object.palabra }}</p>
+        <p>Traducción: {{ object.traduccion }}</p>
+        <p><a href="{% url 'palabra-update' object.pk %}">Editar</a></p>
+        <form method="post" action="{% url 'palabra-delete' object.pk %}">
+            {% csrf_token %}
+            <button type="submit">Eliminar</button>
+        </form>
+    {% endif %}
+</body>
+</html>

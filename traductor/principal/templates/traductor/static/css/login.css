@@ -1,0 +1,170 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: url(/static/imagen/fondologin.jpg) no-repeat center top;
+    background-size: cover; /**/
+    font-family: sans-serif;
+    height: 100vh;
+}
+/* clase login box */
+.login-box{ 
+    width: 360px;
+    background-color: #f1f1f18a;
+    /* color: rgb(236, 228, 228); */
+    top: 55%;
+    left: 50%; /*posicion*/
+    position: absolute;
+    transform: translate(-40% , -47%); /*posicion*/
+    box-sizing: boorder-box;
+    padding: 70px 30px;
+    border-radius: 30px; /* border*/
+    backdrop-filter: blur(0px);
+    
+} 
+.login-box .avatar{
+    width: 100px;/* especifica el ancho del area del contenido del avatar*/
+    height: 100px;/* especifica el ancho del alto del contenido del avatar*/
+    border-radius: 49%; /**/
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+    object-fit: cover;
+    
+}
+.login-box h1{
+    margin: 0%;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 25px;
+    color: black;
+}
+
+.login-box label{
+    margin: 0;
+    padding: 0;
+    font-weight: oblique;
+    display: block;
+}
+.login-box input{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.login-box input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 30px;
+    background: rgb(105, 92, 92);
+    color: rgb(9, 10, 10);
+    font-size: 15px;
+    border-radius: 15px;
+}
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box input[type="email"]{
+    border: none;
+    border-bottom: 1px solid rgb(241, 45, 45);
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: rgb(243, 229, 229);
+    font-size: 15px;
+    border-radius: 40px;
+}
+.login-box a{
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 1px;
+    color:white;
+}
+.login-box a:hover{
+    color: rgb(219, 173, 167);
+}
+input[type="email"]{
+    border: none;
+    border-bottom: 1px solid rgb(34, 44, 136);
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: black;
+    font-size: 15px;
+    border-radius: 40px;
+}
+ion-icon[name="pencil-outline"],
+ion-icon[name="finger-print-sharp"],
+ion-icon[name="mail-unread-outline"]{
+    font-size: 18px;
+    color: azure;
+    --ionicon-stroke-width: 15px;
+  }
+
+  .login-box .login {
+    color: rgb(122, 124, 221);
+    background-color: rgb(24, 37, 97);
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700px;
+    text-align: center;
+    display: flex;
+}
+.login-box .login:hover{
+    color: rgb(219, 173, 167);
+}
+/* esa cosa de abajo  */
+footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+/* Estilos generales del footer */
+footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilo para el texto del copyright y enlaces */
+footer .footer-text {
+    font-size: 14px;
+    color: #888;
+}
+
+footer .footer-text a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer .footer-text a:hover {
+    color: #555;
+}
+
+footer .footer-text::before {
+    content: "|";
+    margin: 0 5px;
+}
+
+footer .footer-text a:first-child::before {
+    content: "";
+    margin: 0;
+}
+
+/* Estilo para el enlace del logo */
+footer .footer-logo {
+    font-size: 20px;
+    color: #555;
+    text-decoration: none;
+}
+
+footer .footer-logo:hover {
+    color: #333;
+}
+
+
