@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-</head>
-<body>
-    {% include 'traductor/navbar.html' %}
+{% load static  %}
+{% static "css/registro.css" %}
+{% include 'traductor/base.html' %}
+{% include 'traductor/navbar.html' %}
 
-    <h2>Registro</h2>
-    <form method="post">
+
+{% block title %}{% endblock %}
+<!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+
+{% block content %}
+    <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Registrarse</button>
-    </form>
-</body>
-</html>
+        <input type="submit" name="submit">
+    </form>    
+{% endblock content %}
+
+
+
+{% include 'traductor/footer.html' %}

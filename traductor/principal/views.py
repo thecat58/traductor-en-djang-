@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from rest_framework import viewsets
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
-
+from django.shortcuts import render
 from .serializer import CustomTokenResponseSerializer, palabraSerializer
 from rest_framework.response import Response
 
@@ -17,18 +17,39 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView, TemplateView
 
 
-def Home(request):
-    
-    return render (request, "traductor/home.html")
 
 def traductor(request):
     
-    return render (request, "traductor/traductor.html")
+    return render (request, "traductor/login.html")
 
 def cerrar_sesion(request):
     logout(request)
     # Redirige a una página de inicio o a donde desees después del cierre de sesión
     return redirect('/traductor/')
+
+
+def traducir_palabra(request):
+    traduccion = None
+    if request.method == 'POST':
+        palabra_usuario = request.POST.get('palabra', None)
+        if palabra_usuario:
+            # Buscar la traducción en la base de datos
+            resultado = TraduccionPalabra.objects.filter(palabra=palabra_usuario).first()
+            if resultado:
+                traduccion = resultado.traduccion
+    return render(request, 'traductor/traductor.html', {'traduccion': traduccion})
+
+
+def traducir_palabra2(request):
+    palabra = None
+    if request.method == 'POST':
+        traduccion_usuario = request.POST.get('traduccion', None)
+        if traduccion_usuario:
+            # Buscar la palabra correspondiente en la base de datos
+            resultado = TraduccionPalabra.objects.filter(traduccion=traduccion_usuario).first()
+            if resultado:
+                palabra = resultado.palabra
+    return render(request, 'traductor/traductor2.html', {'palabra': palabra})
 
 
 class TraduccionPalabraListView(ListView):
@@ -37,12 +58,13 @@ class TraduccionPalabraListView(ListView):
 
 class TraduccionPalabraDetailView(DetailView):
     model = TraduccionPalabra
-    template_name = 'traductor/traduccionpalabra_detail.html'  # Ruta al archivo HTML donde se mostrará el detalle de una traducción
+    template_name = 'traductor/palabra_crud.html'  # Ruta al archivo HTML donde se mostrará el detalle de una traducción
 
 class TraduccionPalabraCreateView(CreateView):
     model = TraduccionPalabra
     fields = ['palabra', 'traduccion']
-    template_name = 'traductor/traduccionpalabra_form.html'  # Ruta al archivo HTML del formulario para crear una nueva traducción
+    template_name = 'traductor/palabra_crud.html'
+    success_url = reverse_lazy('palabra-list')
 
     def form_valid(self, form):
         form.instance.usuario = self.request.user
@@ -51,12 +73,12 @@ class TraduccionPalabraCreateView(CreateView):
 class TraduccionPalabraUpdateView(UpdateView):
     model = TraduccionPalabra
     fields = ['palabra', 'traduccion']
-    template_name = 'traductor/traduccionpalabra_form.html'  # Ruta al archivo HTML del formulario para actualizar una traducción
+    template_name = 'traductor/palabra_crud.html'  # Esta es la misma plantilla que usas para crear una nueva palabra
+    success_url = reverse_lazy('palabra-list')  # Redirige a la lista de palabras después de actualizar una palabra
 
 class TraduccionPalabraDeleteView(DeleteView):
     model = TraduccionPalabra
-    success_url = reverse_lazy('traduccionpalabra-list')  # Nombre de la URL para redireccionar después de eliminar una traducción
-
+    success_url = reverse_lazy('palabra-list') 
 
 class SignUpView(CreateView):
     model = User
@@ -71,7 +93,7 @@ class SignUpView(CreateView):
         password = form.cleaned_data.get('password1')
         usuario = authenticate(username=usuario, password=password)
         login(self.request, usuario)
-        return redirect('traductor/login.html')
+        return redirect('/login/')
 
 def signup_view(request):
     if request.method == 'POST':

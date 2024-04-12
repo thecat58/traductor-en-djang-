@@ -1,11 +1,33 @@
-<!-- navbar.html -->
-<nav>
-    <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Acerca de</a></li>
-        <li><a href="#">Servicios</a></li>
-        <a href="{% url 'login' %}">Iniciar sesión</a>
-        <a href="{% url 'cerrar_sesion' %}">cerrar sesión</a>
+{% load static %}
+{% include 'traductor/base.html' %}
 
-    </ul>
-</nav>
+
+<section id="hero" style="
+    width: 100%;
+    height: 3vh;
+    background: #37517e;
+  ">
+
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center" style=" padding-top: 2px;">
+
+            <img src="{% static 'img/logo.jpg' %}" style="
+                width: 100px;
+                height: 100px;
+              ">
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="{% url 'traducir-palabra' %}">Home</a></li>
+                    <li><a class="nav-link scrollto" ></a></li>
+                    <li><a class="nav-link scrollto" href="{% url 'traducir-palabra' %}">Traducir Palabra Español</a></li>
+                    <li><a class="nav-link scrollto" href="{% url 'traducir-palabra2' %}">Traducir Palabra NASAYUWE</a></li>
+                    <li><a class="nav-link scrollto" href="{% url 'cerrar_sesion' %}">Cerrar cesion</a></li>
+                    <li><a class="getstarted scrollto" href="{% url 'login' %}">Login</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+        </div>
+    </header>
+</section>

@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.views import LoginView, LogoutView
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 from principal.views import *
 
@@ -25,7 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('principal.urls')),
     path('api/', include('principal.apis')),
-    path('home/', Home, name= 'index.html'),
     path('registro/', SignUpView.as_view(template_name='traductor/register.html'), name='registro'),
     path('cerrar-sesion/', cerrar_sesion, name='cerrar_sesion'),
     path('login/', LoginView.as_view(template_name='traductor/login.html', redirect_authenticated_user=True), name="login"),

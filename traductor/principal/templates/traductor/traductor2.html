@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Traductor - Español a Nasayuwe</title>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="{% static 'css/traductor.css' %}">
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {% include 'traductor/navbar.html' %}
+
+    <div class="container-text-encripter">
+        <h1>TRADUCTOR DE NASAYUWE A ESPAÑOL  </h1>
+    </div>
+    <div class="container-input-and-output-text-encripter">
+        <div class="container-input-text-and-botton-encriptor-desencriptor">
+            <form method="post" action="{% url 'traducir-palabra2' %}">
+                {% csrf_token %}
+                <label for="id_palabra"><h2>Palabra a Traducir:</h2></label>
+                <!-- Cambiar el input por un textarea -->
+                <textarea class="style-textarea-input" id="id_palabra" name="traduccion" required></textarea>
+
+                <div class="main-container-button">
+                    <div class="div-button-desencripted">
+                        <button class="button-desencripted" type="submit">Traducir de Nasayuwe a Español  </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="container-output-text-encripted-dessencripted-button-copy">
+            {% if palabra %}
+            <h2>Traducción:</h2>
+            <p class="style-textarea-output">{{ palabra }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'traductor/footer.html' %}
+
+</body>
+</html>
+
